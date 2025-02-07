@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "flask_app" {
   ami           = "ami-0c614dee691cbbf37" # Amazon Linux 2023 AMI (update if needed)
   instance_type = "t2.micro"
-  key_name      = "my-key"
+  key_name      = "devops_jun"
 
   tags = {
     Name = "flask-app-instance"
