@@ -11,14 +11,6 @@ resource "aws_instance" "flask_app" {
     Name = "flask-app-instance"
   }
 
-    # 🔹 Add SSH connection details
-  connection {
-    type        = "ssh"
-    user        = "ec2-user" # Use "ubuntu" for Ubuntu AMIs
-    private_key = file("~/.ssh/devops_jun.pem") # Update with your private key path
-    host        = self.public_ip
-  }
-
   provisioner "file" {
     source      = "../ansible"
     destination = "/home/ec2-user/ansible"
