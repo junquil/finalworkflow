@@ -13,8 +13,8 @@ resource "aws_instance" "flask_app" {
   # 🔹 Add SSH connection details
   connection {
     type        = "ssh"
-    user        = "ec2-user" # Use "ubuntu" for Ubuntu AMIs
-    private_key = file(var.private_key_path) # Reference the SSH key
+    user        = "ec2-user"
+    private_key = filebase64(var.private_key_path) # ✅ Fix: Use base64 function
     host        = self.public_ip
   }
 
