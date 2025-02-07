@@ -61,15 +61,15 @@ jobs:
           name: Install SSH key
           command: |
             mkdir -p ~/.ssh
-            echo "$EC2_SSH_KEY" > ~/.ssh/devops_jun.pem
+            echo "$EC2_SSH_KEY" | base64 --decode > ~/.ssh/devops_jun.pem
             chmod 600 ~/.ssh/devops_jun.pem
             ls -l ~/.ssh/
+            cat ~/.ssh/devops_jun.pem | head -n 5 # Debugging step
       - run:
           name: Apply Terraform
           command: |
             cd terraform
-            terraform apply -auto-approve -var="private_key_path=~/.ssh/devops_jun.pem" -auto-approve
-
+            terraform apply -auto-approve -var="private_key_path=~/.ssh/devops_jun.pem"
 
   deploy-ansible:
     executor: ansible-executor
