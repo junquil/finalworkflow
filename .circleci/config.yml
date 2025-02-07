@@ -58,10 +58,18 @@ jobs:
             cd terraform
             terraform init
       - run:
+          name: Install SSH key
+          command: |
+            mkdir -p ~/.ssh
+            echo "$EC2_SSH_KEY" > ~/.ssh/devops_jun.pem
+            chmod 600 ~/.ssh/devops_jun.pem
+            ls -l ~/.ssh/
+      - run:
           name: Apply Terraform
           command: |
             cd terraform
-            terraform apply -auto-approve
+            terraform apply -auto-approve -var="private_key_path=~/.ssh/devops_jun.pem" -auto-approve
+
 
   deploy-ansible:
     executor: ansible-executor
