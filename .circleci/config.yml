@@ -8,7 +8,7 @@ executors:
 
   docker-executor:
     docker:
-      - image: circleci/docker:latest
+      - image: docker:latest
     working_directory: ~/project
 
   terraform-executor:
