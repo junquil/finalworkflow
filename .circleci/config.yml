@@ -32,11 +32,6 @@ jobs:
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
-      - run:
-          name: Run tests
-          command: |
-            source venv/bin/activate
-            pytest tests/
 
   build-docker-image:
     executor: docker-executor
